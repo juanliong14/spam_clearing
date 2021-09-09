@@ -8,7 +8,7 @@ def load_data(path):
     
     path = dataset file location path 
 
-    Author      : Juan L
+    Created by  : Juan L
     Date        : 8 Sept 2021
     '''
     
@@ -32,8 +32,8 @@ def identify_spammers(data,n_spam=10):
     n_spam = number of minimum tweets a day to be identified as spammers
 
 
-    Author      : Juan L
-    Date        : 8 Sept 2021
+    Created by  : Juan L
+    Date        : 9 Sept 2021
     '''
     import datetime
     
@@ -67,15 +67,37 @@ def identify_spammers(data,n_spam=10):
 
     return spammers
 
-def check_tweet_per_day(data, author):
+def check_total_tweet_per_day(data, author):
     '''
-    Function to display number of tweet for each day on the dataset from that author
+    Function to display number of total tweet for each day on the dataset from that author
         
     data = the dataset to identify spammers
-    n_spam = number of minimum tweets a day to be identified as spammers
-    Author      : Juan L
+    author = author of the tweet
+
+    Created by  : Juan L
     Date        : 9 Sept 2021
     '''
 
     print('The number of tweet for each day by ' + str(author))
-    data[data['Author']==author]['Tweet_Date'].value_counts().sort_index()
+    print(data[data['Author']==author]['Tweet_Date'].value_counts().sort_index())
+
+def check_tweet_per_day(data, author, date, mode='head', n_tweet=10):
+    '''
+    Function to display the tweet from specific author and date
+        
+    data = the dataset to identify spammers
+    author = author of the tweet
+    date = date of the tweet
+    mode = mode of display of the tweet (head or tail)
+    n_tweet = number of tweets to be displayed
+
+    Created by  : Juan L
+    Date        : 9 Sept 2021
+    '''
+
+    print('The tweet by ' + str(author) + ' at ' +str(date))
+
+    if mode == 'head':
+        data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().head(n_tweet)
+    elif mode == 'tail':
+        data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().tail(n_tweet)
