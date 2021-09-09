@@ -98,6 +98,6 @@ def check_tweet_per_day(data, author, date, mode='head', n_tweet=10):
     print('The tweet by ' + str(author) + ' at ' +str(date))
 
     if mode == 'head':
-        data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().head(n_tweet)
+        print(data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().head(n_tweet))
     elif mode == 'tail':
-        data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().tail(n_tweet)
+        print(data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().tail(n_tweet))
