@@ -21,6 +21,8 @@ def load_data(path):
     #extract date from datetime object
     df['Tweet_Date'] = pd.to_datetime(df['Date'].dt.date)
 
+    print('Data had been loaded successfully !')
+
     return df
 
 
@@ -95,9 +97,28 @@ def check_tweet_per_day(data, author, date, mode='head', n_tweet=10):
     Date        : 9 Sept 2021
     '''
 
-    print('The tweet by ' + str(author) + ' at ' +str(date))
+    print('The tweet by ' + str(author) + ' on ' +str(date))
 
     if mode == 'head':
         print(data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().head(n_tweet))
     elif mode == 'tail':
         print(data[(data['Author']==author)&(data['Tweet_Date']==date)]['Full Text'].value_counts().tail(n_tweet))
+
+def edit_spammer_list(list, author, action):
+    '''
+    Function to edit the list of spammers
+        
+    list = the list that contains spammers author 
+    author = author to be removed / added to the list
+    action = action type to the list (remove / add)
+
+    Created by  : Juan L
+    Date        : 10 Sept 2021
+    '''
+
+    if action == 'remove':
+        list.remove(author)
+        print(str(author) + ' had been removed from the list successfully !')
+    elif action == 'add':
+        list.append(author)
+        print(str(author) + ' had been added to the list successfully !')
