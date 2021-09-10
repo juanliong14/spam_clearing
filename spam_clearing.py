@@ -122,3 +122,32 @@ def edit_spammer_list(list, author, action):
     elif action == 'add':
         list.append(author)
         print(str(author) + ' had been added to the list successfully !')
+
+
+def clear_spam(data, list):
+    '''
+    Function to clear spam from the tweet data 
+        
+    data = the tweet dataset to clear spam
+    list = the final list that contains spam authors
+
+    Created by  : Juan L
+    Date        : 10 Sept 2021
+    '''
+
+    print('Prior to spam clearing, the structure of data are : ')
+    print(str(data.shape[0]) + ' tweets')
+    print(str(len(data['Author'].unique())) + ' authors, including ' + str(len(list)) + ' spammers')
+    print(str(round(data.shape[0]/len(data['Author'].unique()),2)) + ' tweet / author ratio ')
+
+    for spammer in list:
+        data = data[data['Author']!=spammer]
+
+    print('The spam tweets had been cleared successfully !')
+
+    print('After spam clearing, the structure of data are : ')
+    print(str(data.shape[0]) + ' tweets')
+    print(str(len(data['Author'].unique())) + ' authors, including ' + str(len(list)) + ' spammers')
+    print(str(round(data.shape[0]/len(data['Author'].unique()),2)) + ' tweet / author ratio ')
+
+    
