@@ -150,4 +150,16 @@ def clear_spam(data, list):
     print(str(len(data['Author'].unique())) + ' authors, including ' + str(len(list)) + ' spammers')
     print(str(round(data.shape[0]/len(data['Author'].unique()),2)) + ' tweet / author ratio ')
 
-    
+
+def save_data(data, file_name):
+    '''
+    Function to save cleaned data to csv
+        
+    data = the tweet dataset to clear spam
+    filename = the filename you want to save 
+
+    Created by  : Juan L
+    Date        : 10 Sept 2021
+    '''
+
+    data.to_csv(file_name, index=False, header=True)
